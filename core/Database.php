@@ -17,7 +17,7 @@ class Database {
     public function query($query, $arg=[]): Database {
 
         $this->statement = $this->pdo->prepare($query);
-        $this->statement->execute([$arg]);
+        $this->statement->execute($arg);
         return $this;
     }
 

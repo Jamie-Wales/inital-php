@@ -15,6 +15,6 @@ if ($note[0]['userid'] !== $currentUserId) {
     abort('403');
 }
 
-$heading = $note[0]['body'];
-require "views/note.view.php";
+$heading = htmlspecialchars($note[0]['body']);
+require "views/notes/note.view.php";
 

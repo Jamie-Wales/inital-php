@@ -19,3 +19,13 @@ function abort($code = 404): void {
         require 'views/403.view.php';
     }
 }
+
+function basePath($path) {
+    return BASE_PATH . $path;
+}
+
+function view($path, $attributes=[]): void
+{
+    extract($attributes);
+    require basePath('views/') . $path;
+}
