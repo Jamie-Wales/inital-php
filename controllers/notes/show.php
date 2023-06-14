@@ -1,13 +1,11 @@
 <?php
 
-$config = require "config.php";
+use core\Database;
 
-
+$config = require basePath("config.php");
 $db = new Database($config['database']);
-
 $id = $_GET['id'];
-$note = $db->query("SELECT * FROM notes where id=?", $id)->findOrFail();
-
+$note = $db->query("SELECT * FROM notes where id=?", [$id])->findOrFail();
 $currentUserId = 1;
 
 
@@ -15,6 +13,7 @@ if ($note[0]['userid'] !== $currentUserId) {
     abort('403');
 }
 
-$heading = htmlspecialchars($note[0]['body']);
-require "views/notes/note.view.php";
+view("notes/show.view.php", [
+    "heading" => htmlspecialchars($note[0]['body']),
+    'note' => $note ]);
 

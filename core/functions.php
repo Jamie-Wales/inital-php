@@ -14,9 +14,9 @@ function urlIs($value): bool {
 function abort($code = 404): void {
     http_response_code($code);
     if ($code = 404) {
-        require 'views/404.view.php';
+        require basePath('views/404.view.php');
     } else if ($code = 403) {
-        require 'views/403.view.php';
+        require basePath('views/403.view.php');
     }
 }
 
@@ -27,5 +27,5 @@ function basePath($path) {
 function view($path, $attributes=[]): void
 {
     extract($attributes);
-    require basePath('views/') . $path;
+    require basepath('views/') . $path;
 }
